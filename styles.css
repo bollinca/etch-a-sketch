@@ -1,6 +1,10 @@
-grid-container {
+* {
+    box-sizing: border-box;
+}
+
+.grid-container {
     display: grid;
     background-color: red;
-    grid-template-columns: repeat(16, 20px);
-    grid-template-rows: repeat(16, 20px);
+    grid-template-columns: repeat(16, 15px);
+    grid-template-rows: repeat(16, 15px);
 }
