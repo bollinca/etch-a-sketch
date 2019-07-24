@@ -6,18 +6,19 @@
     display: grid;
     margin: 0 auto;
     background-color: white;
-    width: 240px; /* 15*16px */
-    height: 240px;
+    width: 70vh; /* 15*16px */
+    height: 70vh;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
 }
 
-#clear-button {
-    display: block;
+button {
+    display: inline-block;
     margin: 25px auto;
     padding: 10px 20px;
     color: white;
-    background-color: green;
+    background-color: rgb(22, 6, 6);
+    text-align: center;
 }
 
 .gridMember {
@@ -25,4 +26,18 @@
     width: 100%; 
     border: 1px solid black;
     display: inline-block;
+}
+
+p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+h1 {
+    text-align: center;
+}
+
+div {
+    text-align: center;
 }
