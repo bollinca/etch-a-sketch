@@ -2,9 +2,11 @@
     box-sizing: border-box;
 }
 
-.grid-container {
+#grid-container {
     display: grid;
-    background-color: red;
+    margin: 0 auto;
+    background-color: white;
+    width: 240px; /* 15*16px */
     grid-template-columns: repeat(16, 15px);
     grid-template-rows: repeat(16, 15px);
 }

@@ -1,7 +1,3 @@
-const gridContainer = document.querySelector('.grid-container');
-
-let gridBlock = document.createElement('div')
-
 function createGrid(numberOfCells) {
     for (let i = 0; i < numberOfCells; i++) {
         let gridMember = document.createElement('div');
@@ -10,13 +6,15 @@ function createGrid(numberOfCells) {
                                          width: 15px; \
                                          border: 1px solid black;\
                                          display: inline-block;');
+        gridMember.setAttribute('class', 'gridMember');
         gridContainer.appendChild(gridMember)
     }
 }
 
-/*create 16*16 grid (256 containers)
-
-create all 256 using a loop;
-append full grid to container
-layout using CSS;
-*/
+const gridContainer = document.getElementById('grid-container');
+createGrid(256);
+const gridBlockNodeList = gridContainer.querySelectorAll('div');
+const gridBlocksArray = Array.from(gridBlockNodeList);
+gridBlocksArray.forEach(block => {
+    block.addEventListener('mouseover', (e) => e.target.style.backgroundColor = 'black');
+});
