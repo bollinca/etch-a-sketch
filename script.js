@@ -15,8 +15,10 @@ function addSketchAbility() {
     });
 }
 
-function makeNew() {
-    let widthAndHeight = prompt('How many boxes per side would you like?');
+function makeNew(widthAndHeight) {
+    if (!widthAndHeight) {
+        widthAndHeight = prompt('How many boxes per side would you like?');
+    }
     widthAndHeight = +widthAndHeight;
     if (widthAndHeight === NaN || widthAndHeight <= 0) {
         alert('ERROR. Please enter a number greater than 0.');
@@ -41,17 +43,19 @@ function useResizeButton() {
     addSketchAbility();
 }
 
+function useDefaultButton() {
+    clearGrid();
+    makeNew(16);
+    addSketchAbility();
+}
+
 const resizeButton = document.getElementById('resize')
 const defaultButton = document.getElementById('default');
 const gridContainer = document.getElementById('grid-container');
 createGrid(16);
 addSketchAbility(gridContainer);
 
-defaultButton.addEventListener('click', () => {
-    clearGrid();
-    createGrid(16);
-    addSketchAbility();
-});
+defaultButton.addEventListener('click', useDefaultButton);
 resizeButton.addEventListener('click', useResizeButton);
 
 
