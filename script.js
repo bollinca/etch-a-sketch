@@ -11,10 +11,27 @@ function createGrid(numberOfCells) {
     }
 }
 
+function addSketchAbility(targetGrid) {
+    let gridBlockNodeList = targetGrid.querySelectorAll('div');
+    let gridBlocksArray = Array.from(gridBlockNodeList);
+    gridBlocksArray.forEach(block => {
+        block.addEventListener('mouseover', (e) => e.target.style.backgroundColor = 'black');
+    });
+}
+
+function makeNew(number) {
+    let widthAndHeight = prompt("How many boxes per side?");
+    number = widthAndHeight * widthAndHeight;
+    createGrid(number);
+}
+
+function clearGrid() {
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+}
+
 const gridContainer = document.getElementById('grid-container');
 createGrid(256);
-const gridBlockNodeList = gridContainer.querySelectorAll('div');
-const gridBlocksArray = Array.from(gridBlockNodeList);
-gridBlocksArray.forEach(block => {
-    block.addEventListener('mouseover', (e) => e.target.style.backgroundColor = 'black');
-});
+addSketchAbility(gridContainer);
+
