@@ -1,4 +1,5 @@
-function createGrid(numberOfCells) {
+function createGrid(widthAndHeight) {
+    let numberOfCells = widthAndHeight * widthAndHeight;
     for (let i = 0; i < numberOfCells; i++) {
         let gridMember = document.createElement('div');
         gridMember.setAttribute('class', 'gridMember');
@@ -23,8 +24,7 @@ function makeNew() {
         alert('Whoaa buddy, let\'s keep it <= 100');
         alert('Bug not yet fixed. If that number was massive, the program will now run for a while and freeze up your browser :(')
     }
-    let totalCells = widthAndHeight * widthAndHeight;
-    createGrid(totalCells);
+    createGrid(widthAndHeight);
     gridContainer.setAttribute('style', `grid-template-rows: repeat(${widthAndHeight}, 1fr); \
                                          grid-template-columns: repeat(${widthAndHeight}, 1fr);`)
 }
@@ -42,21 +42,16 @@ function useResizeButton() {
 }
 
 const resizeButton = document.getElementById('resize')
-const clearButton = document.getElementById('clear');
+const defaultButton = document.getElementById('default');
 const gridContainer = document.getElementById('grid-container');
-createGrid(256);
+createGrid(16);
 addSketchAbility(gridContainer);
 
-clearButton.addEventListener('click', () => {
+defaultButton.addEventListener('click', () => {
     clearGrid();
-    createGrid(256);
+    createGrid(16);
     addSketchAbility();
 });
 resizeButton.addEventListener('click', useResizeButton);
 
 
-/* pseudocode
-button.eventlistener(click, (clear and recreate grid))
-
-
-*/
