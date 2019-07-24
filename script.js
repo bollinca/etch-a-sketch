@@ -1,11 +1,6 @@
 function createGrid(numberOfCells) {
     for (let i = 0; i < numberOfCells; i++) {
         let gridMember = document.createElement('div');
-
-        gridMember.setAttribute('style', 'height: 15px;\
-                                         width: 15px; \
-                                         border: 1px solid black;\
-                                         display: inline-block;');
         gridMember.setAttribute('class', 'gridMember');
         gridContainer.appendChild(gridMember)
     }
@@ -19,10 +14,16 @@ function addSketchAbility(targetGrid) {
     });
 }
 
-function makeNew(number) {
-    let widthAndHeight = prompt("How many boxes per side?");
-    number = widthAndHeight * widthAndHeight;
-    createGrid(number);
+function makeNew() {
+    let widthAndHeight = prompt('How many boxes per side?');
+    widthAndHeight = +widthAndHeight;
+    if (widthAndHeight === NaN || widthAndHeight <= 1) {
+        alert('ERROR. Please enter a number greater than 1.');
+    }
+    let totalCells = widthAndHeight * widthAndHeight;
+    createGrid(totalCells);
+    gridContainer.setAttribute('style', `grid-template-rows: repeat(${widthAndHeight}, 1fr); \
+                                         grid-template-columns: repeat(${widthAndHeight}, 1fr);`)
 }
 
 function clearGrid() {
@@ -35,3 +36,8 @@ const gridContainer = document.getElementById('grid-container');
 createGrid(256);
 addSketchAbility(gridContainer);
 
+/* pseudocode
+button.eventlistener(click, (clear and recreate grid))
+
+
+*/

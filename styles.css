@@ -7,8 +7,9 @@
     margin: 0 auto;
     background-color: white;
     width: 240px; /* 15*16px */
-    grid-template-columns: repeat(16, 15px);
-    grid-template-rows: repeat(16, 15px);
+    height: 240px;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
 }
 
 #clear-button {
@@ -17,4 +18,11 @@
     padding: 10px 20px;
     color: white;
     background-color: green;
+}
+
+.gridMember {
+    height: 100%;
+    width: 100%; 
+    border: 1px solid black;
+    display: inline-block;
 }
