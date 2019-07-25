@@ -5,6 +5,8 @@ function createGrid(widthAndHeight) {
         gridMember.setAttribute('class', 'gridMember');
         gridContainer.appendChild(gridMember)
     }
+    gridContainer.setAttribute('style', `grid-template-rows: repeat(${widthAndHeight}, 1fr); \
+                                         grid-template-columns: repeat(${widthAndHeight}, 1fr);`)
 }
 
 function selectColor(color) {
@@ -24,25 +26,29 @@ function clearGrid() {
     }
 }
 
-function makeNew(widthAndHeight) {
+function validateInput(widthAndHeight) {
     if (!widthAndHeight) {
         widthAndHeight = prompt('How many boxes per side would you like?');
     }
     widthAndHeight = +widthAndHeight;
     if (widthAndHeight === NaN || widthAndHeight <= 0) {
         alert('Please enter a number greater than 0.');
-    } else if (widthAndHeight > 100) {
-        alert('Please use numbers <= 100');
-        return exitFunction
+        return 'exit';
     }
-    createGrid(widthAndHeight);
-    gridContainer.setAttribute('style', `grid-template-rows: repeat(${widthAndHeight}, 1fr); \
-                                         grid-template-columns: repeat(${widthAndHeight}, 1fr);`)
+    if (widthAndHeight > 100) {
+        alert('Number too large. Please use a number less than or equal to 100');
+        return 'exit';
+    } 
+    return widthAndHeight;
 }
 
 function useResizeButton(widthAndHeight) {
+    widthAndHeight = validateInput(widthAndHeight);
+    if (widthAndHeight === 'exit') {
+        return;
+    }
     clearGrid();
-    makeNew(widthAndHeight);
+    createGrid(widthAndHeight);
     selectColor();
 }
 
