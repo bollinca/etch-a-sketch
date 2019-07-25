@@ -18,37 +18,31 @@ function selectColor(color) {
     });
 }
 
-function makeNew(widthAndHeight) {
-    if (!widthAndHeight) {
-        widthAndHeight = prompt('How many boxes per side would you like?');
-    }
-    widthAndHeight = +widthAndHeight;
-    if (widthAndHeight === NaN || widthAndHeight <= 0) {
-        alert('ERROR. Please enter a number greater than 0.');
-    } else if (widthAndHeight > 100) {
-        alert('Whoaa buddy, let\'s keep it <= 100');
-        alert('Bug not yet fixed. If that number was massive, the program will now run for a while and freeze up your browser :(')
-    }
-    createGrid(widthAndHeight);
-    gridContainer.setAttribute('style', `grid-template-rows: repeat(${widthAndHeight}, 1fr); \
-                                         grid-template-columns: repeat(${widthAndHeight}, 1fr);`)
-}
-
 function clearGrid() {
     while (gridContainer.firstChild) {
         gridContainer.removeChild(gridContainer.firstChild);
     }
 }
 
-function useResizeButton() {
-    clearGrid();
-    makeNew();
-    selectColor();
+function makeNew(widthAndHeight) {
+    if (!widthAndHeight) {
+        widthAndHeight = prompt('How many boxes per side would you like?');
+    }
+    widthAndHeight = +widthAndHeight;
+    if (widthAndHeight === NaN || widthAndHeight <= 0) {
+        alert('Please enter a number greater than 0.');
+    } else if (widthAndHeight > 100) {
+        alert('Please use numbers <= 100');
+        return exitFunction
+    }
+    createGrid(widthAndHeight);
+    gridContainer.setAttribute('style', `grid-template-rows: repeat(${widthAndHeight}, 1fr); \
+                                         grid-template-columns: repeat(${widthAndHeight}, 1fr);`)
 }
 
-function useDefaultButton() {
+function useResizeButton(widthAndHeight) {
     clearGrid();
-    makeNew(16);
+    makeNew(widthAndHeight);
     selectColor();
 }
 
@@ -62,14 +56,14 @@ const yellowButton = document.getElementById('yellow');
 const greenButton = document.getElementById('green');
 const whiteButton = document.getElementById('white');
 
-createGrid(16);
-selectColor();
-
-defaultButton.addEventListener('click', useDefaultButton);
-resizeButton.addEventListener('click', useResizeButton);
+defaultButton.addEventListener('click', (e) => useResizeButton(16));
+resizeButton.addEventListener('click', (e) => useResizeButton());
 blackButton.addEventListener('click', (e) => selectColor('black'));
 blueButton.addEventListener('click', (e) => selectColor('blue'));
 redButton.addEventListener('click', (e) => selectColor('red'));
 yellowButton.addEventListener('click', (e) => selectColor('yellow'));
 greenButton.addEventListener('click', (e) => selectColor('green'));
 whiteButton.addEventListener('click', (e) => selectColor('white'));
+
+createGrid(16);
+selectColor();
