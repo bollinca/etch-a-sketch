@@ -7,11 +7,14 @@ function createGrid(widthAndHeight) {
     }
 }
 
-function addSketchAbility() {
+function selectColor(color) {
+    if (!color) {
+        color = 'black';
+    }
     let gridBlockNodeList = gridContainer.querySelectorAll('div');
     let gridBlocksArray = Array.from(gridBlockNodeList);
     gridBlocksArray.forEach(block => {
-        block.addEventListener('mouseover', (e) => e.target.style.backgroundColor = 'black');
+        block.addEventListener('mouseover', (e) => e.target.style.backgroundColor = color);
     });
 }
 
@@ -40,22 +43,33 @@ function clearGrid() {
 function useResizeButton() {
     clearGrid();
     makeNew();
-    addSketchAbility();
+    selectColor();
 }
 
 function useDefaultButton() {
     clearGrid();
     makeNew(16);
-    addSketchAbility();
+    selectColor();
 }
 
 const resizeButton = document.getElementById('resize')
 const defaultButton = document.getElementById('default');
 const gridContainer = document.getElementById('grid-container');
+const blackButton = document.getElementById('black');
+const blueButton = document.getElementById('blue');
+const redButton = document.getElementById('red');
+const yellowButton = document.getElementById('yellow');
+const greenButton = document.getElementById('green');
+const whiteButton = document.getElementById('white');
+
 createGrid(16);
-addSketchAbility(gridContainer);
+selectColor();
 
 defaultButton.addEventListener('click', useDefaultButton);
 resizeButton.addEventListener('click', useResizeButton);
-
-
+blackButton.addEventListener('click', (e) => selectColor('black'));
+blueButton.addEventListener('click', (e) => selectColor('blue'));
+redButton.addEventListener('click', (e) => selectColor('red'));
+yellowButton.addEventListener('click', (e) => selectColor('yellow'));
+greenButton.addEventListener('click', (e) => selectColor('green'));
+whiteButton.addEventListener('click', (e) => selectColor('white'));
